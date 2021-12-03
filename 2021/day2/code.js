@@ -1,48 +1,40 @@
-/* 2021 Day 2 */
+/* 2021 Day 3 */
 const fs = require('fs');
-let filename = "./2021/day2/input.txt"
-// filename = "./2021/day2/test-input.txt"
+let filename = "./2021/day3/input.txt"
+// filename = "./2021/day3/test-input.txt"
 let nums = fs.readFileSync(filename, 'utf8').split("\n")
 
 // ------------------- Part 1 -------------------
-let forward = 0;
-let depth = 0;
-for(let movement of nums){
-    let [direction, magnitude] = movement.split(" ")
-    magnitude = parseInt(magnitude)
-    switch(direction){
-        case "forward":
-            forward += magnitude;
-            break;
-        case "down":
-            depth += magnitude
-            break;
-        case "up":
-            depth -= magnitude
-            break;
+let gammaBit = 0;
+let epsilonBit = 0;
+let arrayTotals = []
+
+for(let numRow of nums){
+    for(let i=0;i<numRow.length-1;i++){
+
+        let existingCount = arrayTotals[i] || { "zeros": 0, "ones": 0 }
+        if(numRow.charAt(i) == "0"){
+            existingCount.zeros++
+        } else {
+            existingCount.ones++
+        }
+        arrayTotals[i] = existingCount
     }
 }
-console.log("Part 1: ", "distance:", forward, "\t| depth:", depth, "\t\t| product:", depth * forward)
+
+gammaBit = arrayTotals.reduce((total, current) => {
+    total += current.zeros > current.ones ? "0" : "1"
+    return total
+}, "")
+
+epsilonBit = arrayTotals.reduce((total, current) => {
+    total += current.zeros < current.ones ? "0" : "1"
+    return total
+}, "")
 
 
-// ------------------- Part 2 -------------------
-forward = 0;
-depth = 0;
-let aim = 0;
-for(let movement of nums){
-    let [direction, magnitude] = movement.split(" ")
-    magnitude = parseInt(magnitude)
-    switch(direction){
-        case "forward":
-            forward += magnitude;
-            depth += aim*magnitude;
-            break;
-        case "down":
-            aim += magnitude
-            break;
-        case "up":
-            aim -= magnitude
-            break;
-    }
-}
-console.log("Part 2: ", "distance:", forward, "\t| depth:", depth, "\t| product:", depth * forward)
+let gamma = parseInt(gammaBit, 2)
+let epsilon = parseInt(epsilonBit, 2)
+
+console.log("gamma:", gamma, "| epsilon:", epsilon)
+console.log("product:", gamma*epsilon)
