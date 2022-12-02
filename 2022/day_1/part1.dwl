@@ -2,12 +2,12 @@
 import * from dw::core::Arrays
 output text/plain
 
-fun splitByEmptyLine(payload) = payload splitBy "\n\n"
-fun splitNumbers(payload) = payload splitBy "\n" map $ as Number
+fun elves(elfList) = elfList splitBy "\n\n"
+fun calories(elf) = elf splitBy "\n" map $ as Number
 
-var goblinIndividualCalories = splitByEmptyLine(payload) map splitNumbers($)
+var goblinIndividualCalories = elves(payload) map calories($)
 var goblinTotalCalories = goblinIndividualCalories map sum($) orderBy -$
 ---
 goblinTotalCalories[0]  // part 1
 ++ ", " 
-++ sum(slice(goblinTotalCalories, 0, 3)) // part 2
+++ sum(goblinTotalCalories[0 to 2]) // part 2
