@@ -3,7 +3,7 @@
 from typing import List
 
 # Get Input
-with open("input.txt", 'r') as file:
+with open("inputs/day1.txt", 'r') as file:
     input = file.readlines()
 
 # Setup data
