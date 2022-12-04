@@ -10,9 +10,6 @@ with open("inputs/day3.txt", 'r') as file:
 
 character_values = { character: index+1 for index, character in enumerate(string.ascii_lowercase + string.ascii_uppercase)}
 
-def get_shared_item(rucksack_1_set, rucksack_2_set, rucksack_3_set):
-    return rucksack_1_set & rucksack_2_set & rucksack_3_set
-
 # for each rucksack
 total_priority_value = 0
 index = 0
