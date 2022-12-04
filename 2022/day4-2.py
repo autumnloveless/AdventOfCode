@@ -6,7 +6,6 @@ from typing import List
 with open("inputs/day4.txt", 'r') as file:
     input = [line.strip() for line in file.readlines()]
 
-
 contains_count = 0
 
 for section_list in input:
@@ -17,7 +16,7 @@ for section_list in input:
     elf1_range = set(range(int(elf1_start),int(elf1_end)+1))
     elf2_range = set(range(int(elf2_start),int(elf2_end)+1))
 
-    if elf1_range.issubset(elf2_range) or elf2_range.issubset(elf1_range):
+    if len(elf1_range & elf2_range) > 0:
         contains_count += 1
 
 print(contains_count)
