@@ -1,7 +1,6 @@
-/* 2021 Day 2 */
+/* 2021 Day 3 */
 const fs = require('fs');
 let filename = "./2021/day2/input.txt"
-// filename = "./2021/day2/test-input.txt"
 let nums = fs.readFileSync(filename, 'utf8').split("\n")
 
 // ------------------- Part 1 -------------------
