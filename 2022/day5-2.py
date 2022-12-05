@@ -38,8 +38,8 @@ instructions = [[int(word) for word in instruction.split(" ") if word.isnumeric(
 
 for instruction in instructions:
     [quantity, from_container, to_container] = instruction
-    for i in range(quantity):
-        crate = crates[from_container-1].pop()
+    moved_crates = [ crates[from_container-1].pop() for i in range(quantity) ]
+    for crate in reversed(moved_crates):
         crates[to_container-1].append(crate)
 
 final_output = ""
