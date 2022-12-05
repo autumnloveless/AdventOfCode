@@ -1,4 +1,4 @@
-"""Advent of Code 2022 - Challenge 5 Part 1"""
+"""Advent of Code 2022 - Challenge 5 Part 2"""
 
 from typing import List
 
